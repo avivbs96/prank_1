@@ -5,8 +5,8 @@
   <title>שאלה קטנה ❤️</title>
   <style>
     body {
-      margin: 0;
       height: 100vh;
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -14,21 +14,15 @@
       font-family: Arial, sans-serif;
       direction: rtl;
     }
-
     .box {
       background: white;
       padding: 40px;
       border-radius: 20px;
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
       width: 90%;
-      max-width: 420px;
     }
-
-    h1 {
-      margin-bottom: 30px;
-    }
-
     button {
       font-size: 18px;
       padding: 12px 30px;
@@ -37,28 +31,16 @@
       border: none;
       cursor: pointer;
     }
-
-    .yes {
-      background: #4CAF50;
-      color: white;
-    }
-
-    .no {
-      background: #f44336;
-      color: white;
-    }
-
-    .sad {
-      font-size: 40px;
-      margin-top: 20px;
-    }
+    .yes { background: #4CAF50; color: white; }
+    .no { background: #f44336; color: white; }
+    .sad { font-size: 40px; margin-top: 20px; }
   </style>
 </head>
 <body>
 
 <div class="box">
   <h1>תעני לי בכנות<br>את אוהבת אותי?</h1>
-  <button class="yes" onclick="openPopup('באמת?')">כן</button>
+  <a href="step1.html"><button class="yes">כן</button></a>
   <button class="no" onclick="showSad()">לא</button>
   <div id="sad" class="sad"></div>
 </div>
@@ -66,75 +48,6 @@
 <script>
   function showSad() {
     document.getElementById("sad").textContent = "😢";
-  }
-
-  function openPopup(text) {
-    const win = window.open("", "_blank", "width=450,height=300");
-
-    win.document.write(`
-      <!DOCTYPE html>
-      <html lang="he">
-      <head>
-        <meta charset="UTF-8">
-        <title>עוד שאלה</title>
-        <style>
-          body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            direction: rtl;
-            background: #fff0f5;
-          }
-          .box {
-            text-align: center;
-          }
-          h1 {
-            margin-bottom: 30px;
-          }
-          button {
-            font-size: 18px;
-            padding: 12px 30px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            background: #4CAF50;
-            color: white;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="box">
-          <h1>${text}</h1>
-          <button onclick="next()">כן</button>
-        </div>
-
-        <script>
-          function next() {
-            if ("${text}" === "באמת?") {
-              window.open('', '_self');
-              window.opener.openPopup('באמת באמת?');
-              window.close();
-            } else if ("${text}" === "באמת באמת?") {
-              window.opener.openPopup('טוב אז בסדר');
-              window.close();
-            } else {
-              document.body.innerHTML = \`
-                <div class="box">
-                  <h1>טוב אז בסדר ❤️</h1>
-                  <button onclick="window.open('https://www.youtube.com/watch?v=ysOLzjxuIxU','_blank')">
-                    אז תשמעי את השיר
-                  </button>
-                </div>
-              \`;
-            }
-          }
-        <\/script>
-      </body>
-      </html>
-    `);
   }
 </script>
 
