@@ -20,11 +20,22 @@
     button {
       font-size: 18px;
       padding: 12px 30px;
+      margin: 10px;
       border-radius: 30px;
       border: none;
       cursor: pointer;
+    }
+    .yes {
       background: #4CAF50;
       color: white;
+    }
+    .no {
+      background: #f44336;
+      color: white;
+    }
+    .sad {
+      font-size: 40px;
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -32,8 +43,16 @@
 
 <div class="box">
   <h1>באמת?</h1>
-  <a href="step2.html"><button>כן</button></a>
+  <a href="step2.html"><button class="yes">כן</button></a>
+  <button class="no" onclick="showSad()">לא</button>
+  <div id="sad" class="sad"></div>
 </div>
+
+<script>
+  function showSad() {
+    document.getElementById("sad").textContent = "😢";
+  }
+</script>
 
 </body>
 </html>
