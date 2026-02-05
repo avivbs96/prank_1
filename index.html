@@ -5,8 +5,8 @@
   <title>שאלה קטנה ❤️</title>
   <style>
     body {
-      height: 100vh;
       margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,13 +21,12 @@
       border-radius: 20px;
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 400px;
       width: 90%;
+      max-width: 420px;
     }
 
     h1 {
       margin-bottom: 30px;
-      color: #333;
     }
 
     button {
@@ -48,28 +47,40 @@
       background: #f44336;
       color: white;
     }
+
+    .sad {
+      font-size: 40px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
 <div class="box">
   <h1>תעני לי בכנות<br>את אוהבת אותי?</h1>
-  <button class="yes" onclick="openStep('באמת?')">כן</button>
-  <button class="no">לא</button>
+  <button class="yes" onclick="openPopup('באמת?')">כן</button>
+  <button class="no" onclick="showSad()">לא</button>
+  <div id="sad" class="sad"></div>
 </div>
 
 <script>
-  function openStep(text) {
+  function showSad() {
+    document.getElementById("sad").textContent = "😢";
+  }
+
+  function openPopup(text) {
     const win = window.open("", "_blank", "width=450,height=300");
+
     win.document.write(`
+      <!DOCTYPE html>
       <html lang="he">
       <head>
         <meta charset="UTF-8">
         <title>עוד שאלה</title>
         <style>
           body {
-            height: 100vh;
             margin: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -103,11 +114,11 @@
         <script>
           function next() {
             if ("${text}" === "באמת?") {
-              window.open("", "_self");
-              opener.openStep("באמת באמת?");
+              window.open('', '_self');
+              window.opener.openPopup('באמת באמת?');
               window.close();
             } else if ("${text}" === "באמת באמת?") {
-              opener.openStep("טוב אז בסדר");
+              window.opener.openPopup('טוב אז בסדר');
               window.close();
             } else {
               document.body.innerHTML = \`
